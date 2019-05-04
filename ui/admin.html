@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div id="admin">
+    <p>Admin Block</p>
+    <button id="addStudent">Add Student</button>
+    <button id="addTeacher">Add Teacher</button>
+
+<div id="addStu">
+    ID:<input type="text" id="sid"><br><hr>
+    SName:<input type="text" id="sname"><br><hr>
+    SBranch:<input type="text" id="sbranch"><br><hr>
+    SMAil:<input type="mail" id="smail"><br><hr>
+    SContact:<input type="tel" id="scontact"><br><hr>
+    Password:<input type="password" id="pass"><br><hr>
+    <input type="button" value="submit" id="st"><br>
+</div>
+
+<div id="addTec">
+        ID:<input type="text" id="tid"><br><hr>
+        TName:<input type="text" id="tname"><br><hr>
+        Description:<input type="text" id="desc"><br><hr>
+        TMAil:<input type="mail" id="tmail"><br><hr>
+        TContact:<input type="tel" id="tcontact"><br><hr>
+        TBranch:<input type="text" id="tbranch"><br><hr>
+        <input type="button" value="submit" id="tc"><br>
+</div>
+</div>
+<script>
+$('#st').click(() =>{
+ let sid = $('#sid').val();
+ let sname = $('#sname').val();
+ let sbranch = $('#sbranch').val();
+ let smail = $('#smail').val();
+ let scontact = $('#scontact').val();
+ let pass = $('#pass').val();
+ var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      alert(this.responseText);
+    }
+  };
+  xhttp.open("POST", "/addStu", true);
+  xhttp.setRequestHeader('Content-Type', 'application/json');
+  xhttp.send(JSON.stringify({
+      sid : sid,
+      sname: sname,
+      sbranch: sbranch,
+      smail: smail,
+      scontact: scontact,
+      pass: pass,
+    }));
+});
+
+
+//Add a Teacher
+$('#tc').click(function() {
+ let tid = $('#tid').val();
+ let tname = $('#tname').val();
+ let desc = $('#desc').val();
+ let tmail = $('#tmail').val();
+ let tcontact = $('#tcontact').val();
+ let tbranch = $('#tbranch').val();
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      alert(this.responseText);
+    }
+  };
+  xhttp.open("POST", "/addTec", true);
+  xhttp.setRequestHeader('Content-Type', 'application/json');
+  xhttp.send(JSON.stringify({
+    tid : tid,
+   tname: tname,
+   desc:desc,
+   tmail: tmail,
+   tcontact: tcontact,
+   tbranch: tbranch,
+    }));
+});
+
+</script>
+</body>
+</html>
